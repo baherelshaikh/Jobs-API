@@ -27,14 +27,22 @@ app.use(ratelimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 request per windowMs
 }))
+
+// extra packages
 app.use(express.json());
 app.use(helmet())
 app.use(cros())
 app.use(xss())
 
+//swagger
+const swaggerUI = require('swagger-ui-express')
+const YAMAL = require('yamljs')
+const swaggerDocument = YAMAL.load('./swagerAndYamal.yaml')
+
 app.get('/',(req,res)=>{
-  res.send('<h1>Jobs api<h1/>')
+  res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>')
 })
+app.use('/api-use',swaggerUI.serve,swaggerUI.setup(swaggerDocument))
 
 // routes
 app.use('/api/v1/auth',authRouter)
@@ -57,3 +65,4 @@ const start = async () => {
 };
 
 start();
+
