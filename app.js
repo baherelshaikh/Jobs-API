@@ -33,7 +33,7 @@ app.use(cros())
 app.use(xss())
 
 app.get('/',(req,res)=>{
-  res.send('Jobs api')
+  res.send('<h1>Jobs api<h1/>')
 })
 
 // routes
