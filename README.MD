@@ -1,68 +1,42 @@
-#### Setup
+# Jobs API Project
 
-#### Database Connection
+This project is a RESTful API designed to manage job listings, with features including authentication and CRUD operations (Create, Read, Update, Delete) for job postings. Additionally, it includes a Swagger UI feature for easy API documentation and testing.
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
+## Features
 
-#### Routers
+### Authentication
+- Users can register for an account.
+- Users can log in using their credentials.
+- Access to certain endpoints requires authentication.
 
-- auth.js
-- jobs.js
+### Job CRUD Operations
+- Create: Users with appropriate permissions can add new job listings.
+- Read: Users can retrieve information about existing job listings.
+- Update: Users can modify details of existing job listings.
+- Delete: Users can remove job listings.
 
-#### User Model
+### Swagger UI
+- Interactive API documentation and testing interface.
+- Easily explore and test API endpoints without additional tools.
 
-Email Validation Regex
+## Technologies Used
 
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
+- **Node.js**: Backend runtime environment.
+- **Express.js**: Web framework for building RESTful APIs.
+- **MongoDB**: NoSQL database for storing job data.
+- **Mongoose**: MongoDB object modeling tool for Node.js.
+- **JSON Web Tokens (JWT)**: Used for authentication and authorization.
+- **bcrypt**: Library for hashing passwords securely.
+- **Swagger UI**: Interactive API documentation tool.
+- **Postman**: Testing and debugging API endpoints.
+- **Git**: Version control system for managing project codebase.
+- **GitHub**: Hosting platform for version-controlled repositories.
 
-#### Register User
+## Getting Started
 
-- Validate - name, email, password - with Mongoose
-- Hash Password (with bcryptjs)
-- Save User
-- Generate Token
-- Send Response with Token
+To get started with this project, follow these steps:
 
-#### Login User
+1. Clone the repository from GitHub:
 
-- Validate - email, password - in controller
-- If email or password is missing, throw BadRequestError
-- Find User
-- Compare Passwords
-- If no user or password does not match, throw UnauthenticatedError
-- If correct, generate Token
-- Send Response with Token
-
-#### Mongoose Errors
-
-- Validation Errors // if user doesn't provide any of the value
-- Duplicate (Email) // when email is unique
-- Cast Error        // when Id doesn't match any one in db
-
-#### Security
-
-- helmet // this package sets various http headers to              prevent numerous possible attacks 
-
-- cors (cross-origin resource sharing) // ensures that our api is accessible from different domain (allow or restrict requested resources on a web server depending on where the http request was initiated), we can make our api accessible to the public using it
-
-- xss-clean // sanitizes the user input in req.body, req.query and req.params and as a result protects us from cross-site scripting attacks where the attacker tries to inject some malicious code
-
-- express-rate-limit // limit the amount of requests the user can make using this package
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
-```
+```bash
+git clone https://github.com/your-username/jobs-api.git
